@@ -42,7 +42,9 @@ Standardized vocabulary
 
 ************************/
 
+set search_path='cdm';
 
+DROP TABLE IF EXISTS concept CASCADE;
 CREATE TABLE concept (
   concept_id			INTEGER			NOT NULL,
   concept_name			VARCHAR(255)	NOT NULL,
@@ -60,6 +62,7 @@ CREATE TABLE concept (
 
 
 
+DROP TABLE IF EXISTS vocabulary CASCADE;
 CREATE TABLE vocabulary (
   vocabulary_id			VARCHAR(20)		NOT NULL,
   vocabulary_name		VARCHAR(255)	NOT NULL,
@@ -72,6 +75,7 @@ CREATE TABLE vocabulary (
 
 
 
+DROP TABLE IF EXISTS domain CASCADE;
 CREATE TABLE domain (
   domain_id			VARCHAR(20)		NOT NULL,
   domain_name		VARCHAR(255)	NOT NULL,
@@ -81,6 +85,7 @@ CREATE TABLE domain (
 
 
 
+DROP TABLE IF EXISTS concept_class CASCADE;
 CREATE TABLE concept_class (
   concept_class_id			VARCHAR(20)		NOT NULL,
   concept_class_name		VARCHAR(255)	NOT NULL,
@@ -91,6 +96,7 @@ CREATE TABLE concept_class (
 
 
 
+DROP TABLE IF EXISTS concept_relationship CASCADE;
 CREATE TABLE concept_relationship (
   concept_id_1			INTEGER			NOT NULL,
   concept_id_2			INTEGER			NOT NULL,
@@ -102,6 +108,7 @@ CREATE TABLE concept_relationship (
 
 
 
+DROP TABLE IF EXISTS relationship CASCADE;
 CREATE TABLE relationship (
   relationship_id			VARCHAR(20)		NOT NULL,
   relationship_name			VARCHAR(255)	NOT NULL,
@@ -113,6 +120,7 @@ CREATE TABLE relationship (
 ;
 
 
+DROP TABLE IF EXISTS concept_synonym CASCADE;
 CREATE TABLE concept_synonym (
   concept_id			INTEGER			NOT NULL,
   concept_synonym_name	VARCHAR(1000)	NOT NULL,
@@ -121,6 +129,7 @@ CREATE TABLE concept_synonym (
 ;
 
 
+DROP TABLE IF EXISTS concept_ancestor CASCADE;
 CREATE TABLE concept_ancestor (
   ancestor_concept_id		INTEGER		NOT NULL,
   descendant_concept_id		INTEGER		NOT NULL,
@@ -131,6 +140,7 @@ CREATE TABLE concept_ancestor (
 
 
 
+DROP TABLE IF EXISTS source_to_concept_map CASCADE;
 CREATE TABLE source_to_concept_map (
   source_code				VARCHAR(50)		NOT NULL,
   source_concept_id			INTEGER			NOT NULL,
@@ -147,22 +157,25 @@ CREATE TABLE source_to_concept_map (
 
 
 
-CREATE TABLE drug_strength (
-  drug_concept_id				INTEGER		NOT NULL,
-  ingredient_concept_id			INTEGER		NOT NULL,
-  amount_value					NUMERIC		NULL,
-  amount_unit_concept_id		INTEGER		NULL,
-  numerator_value				NUMERIC		NULL,
-  numerator_unit_concept_id		INTEGER		NULL,
-  denominator_unit_concept_id	INTEGER		NULL,
-  valid_start_date				DATE		NOT NULL,
-  valid_end_date				DATE		NOT NULL,
-  invalid_reason				VARCHAR(1)	NULL
-)
+DROP TABLE IF EXISTS drug_strength CASCADE;
+    CREATE TABLE drug_strength (
+      drug_concept_id				INTEGER		NOT NULL,
+      ingredient_concept_id			INTEGER		NOT NULL,
+      amount_value					NUMERIC		NULL,
+      amount_unit_concept_id		INTEGER		NULL,
+      numerator_value				NUMERIC		NULL,
+      numerator_unit_concept_id		INTEGER		NULL,
+      denominator_value     NUMERIC NULL,
+      denominator_unit_concept_id	INTEGER		NULL,
+      valid_start_date				DATE		NOT NULL,
+      valid_end_date				DATE		NOT NULL,
+      invalid_reason				VARCHAR(1)	NULL
+    )
 ;
 
 
 
+DROP TABLE IF EXISTS cohort_definition CASCADE;
 CREATE TABLE cohort_definition (
   cohort_definition_id				INTEGER			NOT NULL,
   cohort_definition_name			VARCHAR(255)	NOT NULL,
@@ -175,6 +188,7 @@ CREATE TABLE cohort_definition (
 ;
 
 
+DROP TABLE IF EXISTS attribute_definition CASCADE;
 CREATE TABLE attribute_definition (
   attribute_definition_id		INTEGER			NOT NULL,
   attribute_name				VARCHAR(255)	NOT NULL,
@@ -192,6 +206,7 @@ Standardized meta-data
 ***************************/
 
 
+DROP TABLE IF EXISTS cdm_source CASCADE;
 CREATE TABLE cdm_source 
     (  
      cdm_source_name					VARCHAR(255)	NOT NULL,

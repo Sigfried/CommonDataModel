@@ -1,3 +1,6 @@
+set search_path="cdm";
+
+
 /*********************************************************************************
 # Copyright 2014 Observational Health Data Sciences and Informatics
 #
