@@ -42,6 +42,8 @@ Standardized vocabulary
 
 ************************/
 
+set search_path=:cdm;
+
 
 CREATE TABLE concept (
   concept_id			    INTEGER			  NOT NULL ,
